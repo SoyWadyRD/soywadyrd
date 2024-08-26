@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Modal para solicitar el nombre del usuario -->
+<div id="name-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>¡Bienvenido a mi pagina!</h2>
+        <p>Por favor, ingresa tu nombre:</p>
+        <input type="text" id="user-name-input" placeholder="Tu nombre">
+        <button id="submit-name">Entrar </button>
+    </div>
+</div>
+
     <header>
         <div class="logo-container">
             <img src="img/logo.jpg" alt="Logo Personal" class="logo">
@@ -33,6 +44,30 @@
                 </a>
             </div>
         </section>
+        <section id="game-slider">
+            <h2>Galería de Videojuegos</h2>
+            <div class="slider">
+                <div class="slides">
+                    <img src="img/forza.jpg" alt="Juego 1">
+                    <img src="img/cod.png" alt="Juego 2">
+                    <img src="img/fortnite.jpg" alt="Juego 3">
+                    <img src="img/f123.jpg" alt="Juego 4">
+                    <img src="img/assettocorsa.jpg" alt="Juego 5">
+                    <img src="img/gtavonline.jpg" alt="Juego 6">
+                    <!-- Añade más imágenes aquí -->
+                </div>
+            </div>
+        </section>
+        
+        <section id="xbox">
+            <h2>¡Añádeme a Xbox Live!</h2>
+            <div class="xbox-container">
+                <p>GamerTag: @Soy Wady RD</p>
+                <a href="https://www.xbox.com/es-AR/play/user/Soy%20Wady%20RD" target="_blank">
+                    <img src="img/xbox.png" alt="Xbox" class="xbox-icon">
+                </a>
+            </div>
+        </section>
         
         <section id="contact-me">
             <h2>Contáctame</h2>
@@ -43,7 +78,12 @@
             </div>
         </section>
     </main>
-
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Soy Wady RD. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
     <script src="js/script.js"></script>
 </body>
 </html>

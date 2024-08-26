@@ -1,3 +1,124 @@
+/* Estilo de la barra de desplazamiento para navegadores basados en WebKit */
+::-webkit-scrollbar {
+    width: 12px; /* Ancho de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-track {
+    background: #005299; /* Color de fondo del riel de la barra de desplazamiento (azul claro) */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #009dff; /* Color del pulgar de la barra de desplazamiento (azul claro) */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0078a0; /* Color del pulgar al pasar el ratón sobre él (azul más brillante) */
+}
+
+/* Estilo del modal */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    visibility: hidden; /* Oculto por defecto */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Mostrar el modal */
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    max-width: 50%; /* Ancho del 50% para pantallas grandes */
+    width: 90%; /* Ancho por defecto */
+    position: relative;
+}
+
+/* Estilo del botón de cerrar */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    color: lightblue;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #87CEFA;
+}
+
+/* Estilo del input y botón */
+input[type="text"] {
+    width: calc(100% - 24px); /* Ajusta el ancho para el padding */
+    padding: 10px;
+    border: 2px solid lightblue;
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 1em;
+}
+
+input[type="text"]::placeholder {
+    color: #87CEFA;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: lightblue;
+    color: #121212;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #87CEFA;
+}
+
+/* Media query para ajustar el modal en pantallas pequeñas */
+@media (max-width: 320px) {
+    .modal-content {
+        width: 80%; /* Ancho reducido en pantallas de 320px */
+        padding: 15px;
+    }
+}
+
+/* Media query para ajustar el modal en pantallas grandes */
+@media (min-width: 1024px) {
+    .modal-content {
+        max-width: 40%; /* Ancho del 40% en pantallas grandes */
+    }
+}
+
+
+
+
 body {
     background-color: #121212;
     color: white;
@@ -56,6 +177,113 @@ h1 {
     margin-top: 60px; /* Aumenta el margen para mayor separación */
 }
 
+/* Estilo general del slider */
+#game-slider {
+    text-align: center;
+    margin-top: 60px; /* Aumenta el margen para mayor separación */
+}
+
+.slider {
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+    max-width: 800px; /* Tamaño máximo del slider */
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para efecto 3D */
+}
+
+/* Contenedor de las imágenes en el slider */
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Estilo para las imágenes del slider */
+.slides img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Indicadores de los slides (si decides añadirlos) */
+.slider-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.slider-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #87CEFA; /* Azul claro */
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Indicador activo */
+.slider-indicator.active {
+    background-color: #00BFFF; /* Azul brillante para el indicador activo */
+}
+
+/* Transición del slider */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Estilos para la sección de Xbox */
+#xbox {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #1a1a1a; /* Color de fondo para diferenciar la sección */
+    border-radius: 10px;
+}
+
+/* Estilos para la sección de Xbox */
+#xbox {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #1a1a1a; /* Color de fondo para diferenciar la sección */
+    border-radius: 10px;
+}
+
+#xbox h2 {
+    color: lightblue;
+    margin-bottom: 10px;
+}
+
+.xbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.xbox-container p {
+    color: white;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.xbox-icon {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: 50px; /* Debe ser igual al width para que sea perfectamente redondo */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    overflow: hidden; /* Asegura que el contenido no se desborde de los bordes redondeados */
+    transition: transform 0.3s;
+}
+
+.xbox-icon:hover {
+    transform: scale(1.1);
+}
+
+
+
+
 .contact-icon {
     display: flex;
     justify-content: center;
@@ -63,12 +291,34 @@ h1 {
 }
 
 .contact-social-icon {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     transition: transform 0.3s;
 }
 
 .contact-social-icon:hover {
     transform: scale(1.2);
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #1a1a1a; /* Fondo oscuro */
+    color: white; /* Color de texto */
+    text-align: center; /* Centrar texto */
+    padding: 20px 0; /* Espaciado interno */
+    margin-top: 40px; /* Espaciado superior */
+    border-top: 2px solid #333; /* Línea divisoria superior */
+}
+
+.footer-content {
+    max-width: 1000px; /* Ancho máximo del contenido */
+    margin: 0 auto; /* Centrar contenido horizontalmente */
+    padding: 0 20px; /* Espaciado interno para contenido */
+}
+
+.footer-content p {
+    margin: 0; /* Sin margen para el párrafo */
+    font-size: 0.9em; /* Tamaño de fuente más pequeño */
+    color: lightblue; /* Color de texto del párrafo */
 }
