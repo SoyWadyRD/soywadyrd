@@ -86,3 +86,35 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const apiKey = 'AIzaSyBsp02zGjG_pr750DaSSs31dR0eIQo-2BU'; // Reemplaza con tu clave API
+    const channelId = 'UCtZUQ83pimh7kjKloU7I_2g'; // Reemplaza con el ID de tu canal
+
+    function fetchYouTubeData() {
+        const apiUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Supongamos que la API devuelve un objeto con estadísticas del canal
+                const subscriberCount = data.items[0].statistics.subscriberCount;
+                document.getElementById('subscriber-count').textContent = `Suscriptores: ${subscriberCount}`;
+            })
+            .catch(error => {
+                console.error('Error al obtener datos de YouTube:', error);
+                document.getElementById('subscriber-count').textContent = 'Error al cargar datos';
+            });
+    }
+
+    // Actualizar datos cada 5 minutos (300000 ms)
+    setInterval(fetchYouTubeData, 1000);
+
+    // Fetch initial data
+    fetchYouTubeData();
+});
+
+
+

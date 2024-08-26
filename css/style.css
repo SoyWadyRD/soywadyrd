@@ -281,6 +281,178 @@ h1 {
     transform: scale(1.1);
 }
 
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: lightblue;
+}
+
+#social-media {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+#contact-me {
+    text-align: center;
+    margin-top: 60px; /* Aumenta el margen para mayor separación */
+}
+
+.contact-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.contact-social-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.contact-social-icon:hover {
+    transform: scale(1.2);
+}
+
+#xbox-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.xbox-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Hace el logo redondo */
+    transition: transform 0.3s;
+}
+
+.xbox-icon:hover {
+    transform: scale(1.1);
+}
+
+footer {
+    background-color: #1f1f1f;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+#video-playlist {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.video-item {
+    margin-bottom: 20px;
+}
+
+.video-item p {
+    color: lightblue;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+    #video-playlist {
+        width: 95%;
+        padding: 10px;
+    }
+
+    .video-container {
+        flex-direction: column;
+    }
+
+    .video-item iframe {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Media query para dispositivos de escritorio más grandes */
+@media (min-width: 1200px) {
+    #video-playlist {
+        width: 70%; /* Ajusta el tamaño para pantallas grandes */
+    }
+
+    .video-item {
+        margin-bottom: 30px; /* Mayor espacio entre los videos */
+    }
+}
+
+
+#youtube-data {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 300px;
+    margin: 40px auto;
+    color: white;
+}
+
+#subscriber-count {
+    font-size: 2em;
+    color: lightblue;
+    margin: 0;
+}
+
+
 
 
 
