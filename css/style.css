@@ -372,6 +372,38 @@ h1 {
     transform: scale(1.1);
 }
 
+#discord {
+    text-align: center;
+    margin-top: 60px; /* Aumenta el margen para mayor separación */
+    padding: 20px;
+    background-color: #1a1a1a; /* Color de fondo para diferenciar la sección */
+    border-radius: 10px;
+}
+
+#discord h2 {
+    color: lightblue;
+    margin-bottom: 10px;
+}
+
+.discord-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.discord-icon {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: 50px; /* Debe ser igual al width para que sea perfectamente redondo */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    overflow: hidden; /* Asegura que el contenido no se desborde de los bordes redondeados */
+    transition: transform 0.3s;
+}
+
+.discord-icon:hover {
+    transform: scale(1.1);
+}
+
+
 footer {
     background-color: #1f1f1f;
     color: #aaa;
