@@ -1,0 +1,569 @@
+/* ------------------------------
+    SCROLLBAR
+------------------------------ */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #005299;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #009dff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0078a0;
+}
+
+/* ------------------------------
+    MODAL
+------------------------------ */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    max-width: 50%;
+    width: 90%;
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    color: lightblue;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #87CEFA;
+}
+
+input[type="text"] {
+    width: calc(100% - 24px);
+    padding: 10px;
+    border: 2px solid lightblue;
+    border-radius: 8px;
+    margin-top: 10px;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 1em;
+}
+
+input[type="text"]::placeholder {
+    color: #87CEFA;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: lightblue;
+    color: #121212;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #87CEFA;
+}
+
+/* ------------------------------
+    GLOBAL
+------------------------------ */
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: lightblue;
+}
+
+/* ------------------------------
+    SOCIAL MEDIA
+------------------------------ */
+#social-media {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon,
+.contact-social-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover,
+.contact-social-icon:hover {
+    transform: scale(1.1);
+}
+
+#contact-me {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.contact-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* ------------------------------
+    SLIDER
+------------------------------ */
+#game-slider {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.slider {
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+.slider-indicators {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.slider-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #87CEFA;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.slider-indicator.active {
+    background-color: #00BFFF;
+}
+
+/* ------------------------------
+    XBOX SECTION
+------------------------------ */
+#xbox {
+    text-align: center;
+    margin: 40px auto;      /* 🔥 Esto centra el cuadro horizontalmente */
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    width: 80%;
+}
+
+
+#xbox h2 {
+    color: lightblue;
+    margin-bottom: 10px;
+}
+
+.xbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.xbox-container p {
+    color: white;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.xbox-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.xbox-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ------------------------------
+    DISCORD SECTION
+------------------------------ */
+#discord {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    width: 80%;
+}
+
+#discord h2 {
+    color: lightblue;
+}
+
+.discord-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.discord-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.discord-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ------------------------------
+    VIDEO PLAYLIST
+------------------------------ */
+#video-playlist {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 800px;
+}
+
+#video-playlist,
+.video-container,
+.video-item {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+.video-item p {
+    color: lightblue;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+#youtube-data {
+    text-align: center;
+    padding: 15px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 300px;
+    margin: 40px auto;
+    color: white;
+    box-sizing: border-box;
+}
+
+
+#subscriber-count {
+    font-size: 2em;
+    color: lightblue;
+    margin: 0;
+}
+
+/* ------------------------------
+    FOOTER
+------------------------------ */
+footer {
+    background-color: #1a1a1a;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 2px solid #333;
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 0.9em;
+    color: lightblue;
+}
+
+/* ================================
+      RESPONSIVE GLOBAL
+================================ */
+
+/* PC grande (por defecto está bien) */
+@media (max-width: 1200px) {
+    #video-playlist {
+        width: 85%;
+    }
+}
+
+/* Tablets y pantallas medianas (≤ 768px) */
+@media (max-width: 768px) {
+
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .slider {
+        width: 95%;
+    }
+
+    #xbox, #discord {
+        padding: 15px;
+    }
+
+    #video-playlist {
+        padding: 15px;
+        width: 95%;
+    }
+
+    iframe {
+        border-radius: 10px;
+        aspect-ratio: 16/9;
+    }
+}
+
+/* Teléfonos grandes (≤ 480px) */
+@media (max-width: 480px) {
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .social-icon,
+    .xbox-icon,
+    .discord-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    #video-playlist {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* Teléfonos medianos (≤ 375px) */
+@media (max-width: 375px) {
+
+    .logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    .social-icons {
+        gap: 15px;
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    #video-playlist {
+        padding: 8px;
+    }
+}
+
+/* Teléfonos pequeños (≤ 320px) */
+@media (max-width: 320px) {
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 10px;
+    }
+
+    #video-playlist {
+        padding: 5px;
+        width: 100%;
+    }
+}
+
+.video-item iframe {
+    width: 90%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#live-status {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.live-button img{
+    width: 25px;
+    margin-bottom: -5px;
+}
+
+/* Imagen en modo inactivo: blanco y negro */
+.live-button.inactivo img {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+/* Imagen cuando está activo: color normal */
+.live-button.activo img {
+    filter: none;
+    opacity: 1;
+}
+
+
+.live-button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 250px;
+}
+
+.live-button.inactivo {
+    background: #555;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.live-button.activo {
+    cursor: pointer;
+}
+
+#btn-tiktok.activo{
+    font-weight: 700;
+    color: #000;
+    background: #3ff5fb;
+background: radial-gradient(circle, rgba(63, 245, 251, 1) 0%, rgba(181, 0, 88, 1) 100%);
+}
+
+#btn-kick.activo{
+    font-weight: 700;
+    color: #fff;
+   background: #000000;
+background: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(66, 251, 63, 1) 100%);
+}
+
