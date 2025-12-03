@@ -8,46 +8,124 @@
     <meta name="description" content="Pagina de videojuegos">
     <meta name="keywords" content="wady,soy wady rd,wady rd,soy wady">
     <meta name="google-site-verification" content="jJ6kfIHutOZGKcdS_1mkDLnD19KEGNva7a4guyzss1U" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+
+
     <title>Soy Wady RD</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Modal para solicitar el nombre del usuario -->
-<div id="name-modal" class="modal">
+
+
+    <header class="hero">
+  <video class="hero-video" muted  playsinline>
+    <source src="videos/video_bienvenida.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+
+  </div>
+</header>
+
+
+
+<section id="name-modal" class="modal">
     <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h2>¡Bienvenido a mi pagina!</h2>
-        <p>Por favor, ingresa tu nombre:</p>
-        <input type="text" id="user-name-input" placeholder="Tu nombre">
-        <button id="submit-name">Entrar </button>
+        <h2>¡Bienvenido a mi página!</h2>
+        <p>Haz clic para entrar</p>
+        <button id="btn-entrar">Entrar</button>
+    </div>
+</section>
+
+
+
+    <div class="sobre-mi" id="sobre-mi">
+
+        <img src="img/new_logo.png" class="logo" alt="">
+
+        <p>¡Hola! Soy Wady, un apasionado de los videojuegos y el streaming. Aquí encontrarás contenido de mis juegos favoritos, 
+            transmisiones en vivo y toda la diversión que me motiva a seguir creciendo en el mundo gamer.</p>
+
+           <a href="#seccion_logo" class="sobre-mi">
+    <button class="btn-Live IrEnVivo" >
+        <i class="fas fa-video"></i>
+
+        Live
+    </button>
+</a>
+
+
+
+            <a href="#social-bar" class="sobre-mi">
+    <button class="btn-RedesSociales btn-IrRedes">
+        <i class="fas fa-share-alt"></i>
+        Redes Sociales
+    </button>
+</a>
+
+    </div>
+
+    
+        <div class="logo-container" id="seccion_logo">
+
+            <section id="live-status">
+    <h2>Mi Estado en Vivo</h2>
+
+    <button id="btn-tiktok" class="live-button inactivo">
+        <img src="img/tiktok_button.png" alt=""> TikTok Live
+    </button>
+
+    <button id="btn-kick" class="live-button inactivo">
+        <img src="img/kick_button.png" alt=""> Kick Live
+    </button>
+</section>
+            
+        </div>
+   
+
+    <main>
+
+
+
+<div class="carbon-hood-button">
+    <div class="carbon-hood">
+        <div class="cut left"></div>
+        <div class="cut right"></div>
+        <div class="shine"></div>
+        <span class="capo-text">Redes</span>
     </div>
 </div>
 
-    <header>
-        <div class="logo-container">
-            <img src="img/new_logo.png" alt="Logo Personal" class="logo">
-            <h1>Soy Wady RD</h1>
-        </div>
-    </header>
+<section id="social-bar">
+    <div class="social-icons">
+        <a href="https://www.tiktok.com/@soy_wady_rd" target="_blank" class="si tiktok">
+            <i class="fab fa-tiktok"></i>
+            <span>Tiktok</span>
+        </a>
 
-    <main>
-        <section id="welcome-message">
-            <!-- El mensaje de bienvenida se insertará aquí -->
-        </section>
-        <section id="social-media">
-            <h2>Sígueme en:</h2>
-            <div class="social-icons">
-                <a href="https://www.tiktok.com/@soy_wady_rd" target="_blank">
-                    <img src="img/tiktok.png" alt="TikTok" class="social-icon">
-                </a>
-                <a href="https://www.twitch.tv/soy_wady_rd" target="_blank">
-                    <img src="img/twich.png" alt="Twitch" class="social-icon">
-                </a>
-                <a href="https://www.youtube.com/@Soy_Wady_RD" target="_blank">
-                    <img src="img/youtube.png" alt="YouTube" class="social-icon">
-                </a>
-            </div>
-        </section>
+        <a href="https://kick.com/soy-wady-rd" target="_blank" class="si kick">
+            <i class="fas fa-bolt"></i>
+            <span>Kick</span>
+        </a>
+
+        <a href="https://www.youtube.com/@Soy_Wady_RD" target="_blank" class="si youtube">
+            <i class="fab fa-youtube"></i>
+            <span>Youtube</span>
+        </a>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
         <section id="game-slider">
             <h2>Galería de Videojuegos</h2>
             <div class="slider">
@@ -84,44 +162,24 @@
         
 
         <section id="video-playlist">
-            <h2>Mis Mejores Videos</h2>
+            <h2>En Mantenimiento</h2>
+            <!-- <h2>Mis Mejores Videos</h2>
             <div class="video-container">
-                <!-- Video 1 -->
+               
                 <div class="video-item">
                     <iframe  src="https://www.youtube.com/embed/pKOwofntNmA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 
-                <!-- Video 2 -->
+                
                 <div class="video-item">
                     <iframe  src="https://www.youtube.com/embed/6Fvju9rs4A8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 
-                <!-- Agrega más videos según sea necesario -->
-            </div>
+                
+            </div>-->
         </section>
 
 
-        <section id="youtube-data">
-            <h2>Datos en Tiempo Real de mi Canal de YouTube</h2>
-            <p id="subscriber-count">Cargando datos...</p>
-        </section>
-
-
-       <section id="live-status">
-    <h2>Mi Estado en Vivo</h2>
-
-    <button id="btn-tiktok" class="live-button inactivo">
-        <img src="img/tiktok_button.png" alt=""> TikTok Live
-    </button>
-
-    <button id="btn-kick" class="live-button inactivo">
-        <img src="img/kick_button.png" alt=""> Kick Live
-    </button>
-</section>
-</section>
-
-
-        
         
         
         

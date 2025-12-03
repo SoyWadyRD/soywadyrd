@@ -1,45 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Muestra el modal al cargar la página
-    const modal = document.getElementById("name-modal");
-    const closeButton = document.querySelector(".close-button");
-    const submitButton = document.getElementById("submit-name");
-    const userNameInput = document.getElementById("user-name-input");
-    const welcomeSection = document.getElementById("welcome-message");
-
-    function showModal() {
-        modal.classList.add("show");
-    }
-
-    function hideModal() {
-        modal.classList.remove("show");
-    }
-
-    function handleSubmit() {
-        const userName = userNameInput.value;
-        if (userName) {
-            const welcomeMessageDiv = document.createElement("div");
-            welcomeMessageDiv.textContent = `Hola, ${userName}! Gracias por visitar mi página.`;
-            welcomeMessageDiv.style.fontSize = "1.5em";
-            welcomeMessageDiv.style.color = "lightblue";
-            welcomeMessageDiv.style.textAlign = "center";
-            welcomeMessageDiv.style.marginTop = "20px";
-            welcomeMessageDiv.style.padding = "10px";
-            welcomeMessageDiv.style.backgroundColor = "#121212";
-            welcomeMessageDiv.style.borderRadius = "10px";
-            welcomeSection.appendChild(welcomeMessageDiv);
-            hideModal();
-        }
-    }
-
-    // Muestra el modal al cargar la página
-    showModal();
-
-    // Maneja el cierre del modal
-    closeButton.addEventListener("click", hideModal);
-
-    // Maneja el envío del formulario
-    submitButton.addEventListener("click", handleSubmit);
-});
 
 
 
@@ -89,32 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    const apiKey = 'AIzaSyBsp02zGjG_pr750DaSSs31dR0eIQo-2BU'; // Reemplaza con tu clave API
-    const channelId = 'UCtZUQ83pimh7kjKloU7I_2g'; // Reemplaza con el ID de tu canal
 
-    function fetchYouTubeData() {
-        const apiUrl = `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`;
-
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Supongamos que la API devuelve un objeto con estadísticas del canal
-                const subscriberCount = data.items[0].statistics.subscriberCount;
-                document.getElementById('subscriber-count').textContent = `Suscriptores: ${subscriberCount}`;
-            })
-            .catch(error => {
-                console.error('Error al obtener datos de YouTube:', error);
-                document.getElementById('subscriber-count').textContent = 'Error al cargar datos';
-            });
-    }
-
-    // Actualizar datos cada 5 minutos (300000 ms)
-    setInterval(fetchYouTubeData, 1000);
-
-    // Fetch initial data
-    fetchYouTubeData();
-});
 
 
 
@@ -191,7 +124,7 @@ fetch("/live/kick")
             kickBtn.classList.add("activo");
             kickBtn.classList.remove("inactivo");
             kickBtn.disabled = false;
-            kickBtn.onclick = () => window.open("https://kick.com/soy_wady_rd", "_blank");
+            kickBtn.onclick = () => window.open("https://kick.com/soy-wady-rd", "_blank");
         } else {
             kickBtn.classList.add("inactivo");
             kickBtn.classList.remove("activo");
@@ -209,6 +142,90 @@ setInterval(verificarEnVivo, 20000);
 
 // Llamada inicial
 verificarEnVivo();
+
+
+// Evitar que el navegador recuerde la posición al recargar
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const modal = document.getElementById("name-modal");
+    const btnEntrar = document.getElementById("btn-entrar");
+    const video = document.querySelector(".hero-video");
+    const nextSection = document.querySelector("#sobre-mi");
+
+    
+
+    modal.addEventListener("click", (e) => {
+    // Evita cerrar modal si tocan fuera
+    if (e.target === modal) {
+        e.stopPropagation();
+    }
+});
+
+
+    if (!modal || !btnEntrar || !video) {
+        console.error("ERROR: Falta un elemento del DOM");
+        return;
+    }
+
+    // Mostrar modal correctamente
+    modal.classList.add("show");
+    document.body.classList.add("no-scroll");
+
+    // Click en Entrar
+    btnEntrar.addEventListener("click", () => {
+    modal.classList.remove("show");
+    document.body.classList.remove("no-scroll"); 
+    video.muted = false;
+    video.play();
+});
+
+    // Cuando el video termina
+    video.addEventListener("ended", () => {
+        nextSection.scrollIntoView({ behavior: "smooth" });
+    });
+});
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const capoButton = document.querySelector('.carbon-hood-button');
+    const socialIcons = document.querySelector('.social-icons');
+
+    let open = false;
+
+    capoButton.addEventListener('click', () => {
+        if (!open) {
+            capoButton.classList.add('open');      // Capó sube
+            socialIcons.classList.add('open');     // Social aparece
+        } else {
+            capoButton.classList.remove('open');   // Capó baja
+            socialIcons.classList.remove('open');  // Social desaparece
+        }
+        open = !open;
+    });
+});
+
+
+
+
+
+
 
 
 
