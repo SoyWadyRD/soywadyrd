@@ -161,6 +161,39 @@ window.addEventListener("load", () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+// ⚠️ BLOQUEO TOTAL DEL SCROLL
+function bloquearScroll(e) {
+  e.preventDefault();
+}
+
+function activarBloqueoScroll() {
+  document.body.classList.add("no-scroll");
+  window.addEventListener("scroll", bloquearScroll, { passive: false });
+  window.addEventListener("wheel", bloquearScroll, { passive: false });
+  window.addEventListener("touchmove", bloquearScroll, { passive: false });
+  window.addEventListener("keydown", bloquearScroll, { passive: false });
+}
+
+function quitarBloqueoScroll() {
+  document.body.classList.remove("no-scroll");
+  window.removeEventListener("scroll", bloquearScroll);
+  window.removeEventListener("wheel", bloquearScroll);
+  window.removeEventListener("touchmove", bloquearScroll);
+  window.removeEventListener("keydown", bloquearScroll);
+}
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const modal = document.getElementById("name-modal");
@@ -171,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Mostrar modal
   modal.classList.add("show");
-  document.body.classList.add("no-scroll");
+  activarBloqueoScroll()
 
   // 🟢 PRE-CARGAR el video sin reproducirlo
   if (video) {
@@ -183,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   -------------------------- */
   btnEntrar.addEventListener("click", () => {
     modal.classList.remove("show");
-    document.body.classList.remove("no-scroll");
+
 
     if (!video) return;
 
@@ -204,6 +237,11 @@ document.addEventListener("DOMContentLoaded", () => {
      🔥 CUANDO TERMINA EL VIDEO
   -------------------------- */
   video.addEventListener("ended", () => {
+
+    // 🔓 AHORA sí desbloquea scroll
+  quitarBloqueoScroll();
+
+  
     video.classList.add("video-hide");
 
     setTimeout(() => {
@@ -222,6 +260,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+
+
+
+
 
 
 

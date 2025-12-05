@@ -134,6 +134,15 @@ body.no-scroll .modal * {
     pointer-events: auto !important;  /* excepto el modal */
 }
 
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
+  position: fixed !important;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
 
 
 .close-button {
