@@ -29,9 +29,11 @@ html, body {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 100vh;  /* No fuerza más de lo necesario */
+  min-height: 100vh;
   overflow: hidden;
+  transition: all 0.6s ease; /* 👈 suaviza el colapso */
 }
+
 
 .hero-video {
   position: absolute;
@@ -45,6 +47,19 @@ html, body {
   z-index: -1;
 }
 
+.video-hide {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.hero-collapse {
+  height: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+
+
 video, iframe {
     max-width: 100%;
     height: auto;
@@ -52,15 +67,7 @@ video, iframe {
 }
 
 
-/* Texto encima */
-.hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: #fff;
-  top: 40%;
-  transform: translateY(-50%);
-}
+
 
 /* ------------------------------
     MODAL
@@ -179,126 +186,63 @@ body {
 }
 
 
-.logo-container {
-    scroll-margin-top: 100px;
-    width: 100%;
-    max-width: 230px;
-    height: 30vh;
-    margin: 100px auto 100px;
-    padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 
-    /* FIBRA DE CARBONO */
-    background: repeating-linear-gradient(
-        45deg,
-        #1a1a1a 0px,
-        #1a1a1a 10px,
-        #111111 10px,
-        #111111 20px
-    );
 
-    border-radius: 14px;
-    position: relative;
-    overflow: hidden;
 
-    /* glow suave */
-    box-shadow: inset 0 0 20px rgba(0, 170, 255, 0.3);
-}
 
-/* 🔥 BORDE RGB QUE CORRE POR LA ORILLA */
-.logo-container::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    border-radius: 14px;
 
-    background: linear-gradient(
-        120deg,
-        #00eaff,
-        #0077ff,
-        #ff009d,
-        #00ff85,
-        #00eaff
-    );
 
-    background-size: 300% 300%;
-    animation: bordeCorriendo 6s linear infinite;
 
-    /* truco para dejar solo el borde */
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
 
-    z-index: 2;
-}
 
-/* ⚡ Animación del borde recorriendo */
-@keyframes bordeCorriendo {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 150% 50%; }
-    100% { background-position: 300% 50%; }
-}
+
 
 #sobre-mi {
     scroll-margin-top: 100px;
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 
-  margin: 100px auto 0;
-  max-width: 220px;
-  width: 100%;
-  height: 70vh;
+    margin: 100px auto 0;
+    max-width: 70%;
+    width: 100%;
+    height: 70vh;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 
-  background: #111;  /* fondo oscuro */
-
-  border-radius: 8px;
-  padding: 25px;
+    background: #111;
+    border-radius: 8px;
+    padding: 25px;
 }
 
 /* 🔥 Blob animado */
 #sobre-mi::before {
-  content: "";
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(180,180,180,0.3), rgba(80,80,80,0.05), rgba(0,0,0,0));
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: moveBlob 10s infinite ease-in-out;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    
+    width: 45%;   /* tamaño relativo, así no importa el tamaño del contenedor */
+    height: 45%;
+    
+    background: radial-gradient(circle, rgba(180,180,180,0.25), rgba(80,80,80,0.05), rgba(0,0,0,0));
+    border-radius: 50%;
+    filter: blur(60px);
+
+    animation: moveBlob 12s infinite ease-in-out;
+    pointer-events: none;
 }
 
-/* Animación del blob */
+/* 🌈 Animación que recorre todo el contenedor */
 @keyframes moveBlob {
-  0% {
-    transform: translate(-150px, -150px) scale(1);
-  }
-  25% {
-    transform: translate(100px, -80px) scale(1.2);
-  }
-  50% {
-    transform: translate(150px, 120px) scale(0.9);
-  }
-  75% {
-    transform: translate(-50px, 150px) scale(1.1);
-  }
-  100% {
-    transform: translate(-150px, -150px) scale(1);
-  }
+    0%   { transform: translate(-30%, -30%) scale(1); }
+    20%  { transform: translate(60%, -20%) scale(1.2); }
+    40%  { transform: translate(80%, 60%) scale(0.9); }
+    60%  { transform: translate(0%, 80%) scale(1.15); }
+    80%  { transform: translate(-40%, 20%) scale(1); }
+    100% { transform: translate(-30%, -30%) scale(1); }
 }
 
 /* Para que el texto quede encima */
@@ -314,6 +258,69 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+}
+
+.sobre-mi p {
+    padding: 0 15% 0 15%;
+    font-size: 18px;
+    line-height: 1.6;
+    white-space: pre-line; /* Mantiene saltos de línea si los hay */
+}
+
+/* estilos mínimos (ya tienes los tuyos, sólo el cursor) */
+#typewriter { opacity: 0; transition: opacity .25s; }
+
+/* cursor parpadeante (opcional) */
+#typewriter.cursor::after{
+  content: "|";
+  display: inline-block;
+  margin-left: 4px;
+  opacity: 1;
+  animation: blink 1s steps(2,start) infinite;
+  font-weight: 700;
+}
+@keyframes blink { 50% { opacity: 0 } }
+
+
+/* fila de botones: lado a lado por defecto, se centran y se separan */
+.btn-row {
+  display: flex;
+  gap: 14px;                 /* espacio entre botones */
+  justify-content: center;   /* centrado horizontal */
+  align-items: center;
+  margin-top: 18px;
+  flex-wrap: wrap;           /* permite que bajen cuando no quepan */
+}
+
+/* que los anchors ocupen sólo lo necesario y mantengan el botón centrado */
+.btn-row a {
+  display: inline-block;
+}
+
+/* estilo de los botones: adaptables */
+.btn-row button {
+  min-width: 160px;          /* ancho mínimo */
+  max-width: 320px;
+  width: auto;               /* se ajusta al contenido */
+  padding: 10px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MEDIA QUERY: cuando el ancho sea pequeño, apilan verticalmente */
+@media (max-width: 600px) {
+  .btn-row {
+    flex-direction: column;  /* uno debajo del otro */
+    gap: 10px;
+  }
+
+  .btn-row button {
+    width: 220px;            /* puedes ajustar */
+  }
 }
 
 .sobre-mi a{
@@ -466,6 +473,304 @@ body {
 }
 
 
+/* ───────────────────────────────
+      RESPONSIVE 768px
+─────────────────────────────── */
+@media (max-width: 768px) {
+    
+}
+
+/* ───────────────────────────────
+      RESPONSIVE 768px
+─────────────────────────────── */
+@media (max-width: 650px) {
+    #sobre-mi{
+    height: 75vh;
+}
+
+.logo{
+    width: 125px;
+    height: 125px;
+}
+    .sobre-mi p {
+    padding: 0 0 0 0;
+    font-size: 18px;
+}
+
+
+
+
+
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 480px
+─────────────────────────────── */
+@media (max-width: 480px) {
+
+    #sobre-mi{
+    height: 75vh;
+}
+
+.logo{
+    width: 125px;
+    height: 125px;
+}
+     .sobre-mi p {
+    padding: 0 0 0 0;
+    font-size: 16px;
+}
+
+.sobre-mi button{
+    font-size: 16px;
+}
+
+.sobre-mi button img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 380px
+─────────────────────────────── */
+@media (max-width: 380px) {
+      #sobre-mi{
+    height: 75vh;
+}
+
+.logo{
+    width: 105px;
+    height: 105px;
+}
+     .sobre-mi p {
+    padding: 0 0 0 0;
+    font-size: 15px;
+}
+
+.sobre-mi button{
+    font-size: 16px;
+    height: 40px;
+}
+
+.sobre-mi button img{
+    width: 20px;
+    height: 20px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------/
+| ESTADO EN VIVO /
+/---------------*/
+
+
+.logo-container {
+    scroll-margin-top: 100px;
+    width: 100%;
+    max-width: 70%;
+    height: 30vh;
+    margin: 100px auto 100px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    /* FIBRA DE CARBONO */
+    background: repeating-linear-gradient(
+        45deg,
+        #1a1a1a 0px,
+        #1a1a1a 10px,
+        #111111 10px,
+        #111111 20px
+    );
+    background-size: 300% 300%;
+    animation: fibraDiag 30s linear infinite;
+
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+
+    /* glow suave */
+    box-shadow: inset 0 0 20px rgba(0, 170, 255, 0.3);
+}
+
+@keyframes fibraDiag {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+/* 🔥 BORDE RGB QUE CORRE POR LA ORILLA */
+.logo-container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        120deg,
+        #00eaff,
+        #0077ff,
+        #ff009d,
+        #00ff85,
+        #00eaff
+    );
+
+    background-size: 300% 300%;
+    animation: bordeCorriendo 6s linear infinite;
+
+    /* truco para dejar solo el borde */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    z-index: 2;
+}
+
+/* ⚡ Animación del borde recorriendo */
+@keyframes bordeCorriendo {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 150% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+.logo-container h2{
+    margin-bottom: 50px;
+}
+
+#live-status {
+    display: flex;
+    flex-wrap: wrap;       /* permite que bajen */
+    justify-content: center;
+    gap: 15px;             /* separación entre botones */
+    width: 100%;
+}
+
+.live-button img{
+    width: 25px;
+    margin-bottom: -5px;
+}
+
+/* Imagen en modo inactivo: blanco y negro */
+.live-button.inactivo img {
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+/* Imagen cuando está activo: color normal */
+.live-button.activo img {
+    filter: none;
+    opacity: 1;
+}
+
+
+.live-button {
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    max-width: 250px;
+    width: 80%;
+}
+
+.live-button.inactivo {
+    background: #555;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.live-button.activo {
+    cursor: pointer;
+}
+
+#btn-tiktok.activo{
+    font-weight: 700;
+    color: #000;
+    background: #3ff5fb;
+background: radial-gradient(circle, rgba(63, 245, 251, 1) 0%, rgba(181, 0, 88, 1) 100%);
+}
+
+#btn-kick.activo{
+    font-weight: 700;
+    color: #fff;
+   background: #000000;
+background: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(66, 251, 63, 1) 100%);
+}
+
+
+/* ───────────────────────────────
+      RESPONSIVE 768px
+─────────────────────────────── */
+@media (max-width: 768px) {
+    .logo-container{
+        height: 40vh;
+    }
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 480px
+─────────────────────────────── */
+@media (max-width: 480px) {
+    
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 320px
+─────────────────────────────── */
+@media (max-width: 320px) {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 :root{
@@ -555,12 +860,10 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #00f0ff;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
+  color: #fff;
+  font-size: 1.2rem;
   font-weight: bold;
   pointer-events: none; /* para que no bloquee el click */
-  text-shadow: 0 0 5px #00f0ff;
 }
 
 
@@ -797,55 +1100,177 @@ body {
 
 
 
-
-
-/* ------------------------------
-    SLIDER
------------------------------- */
+/* ───────────────────────────────
+      CARRUSEL PRINCIPAL
+─────────────────────────────── */
 #game-slider {
     text-align: center;
-    margin-top: 60px;
+    padding: 60px 0;
 }
 
-.slider {
-    overflow: hidden;
+.carousel {
     position: relative;
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slides img {
     width: 100%;
-    border-radius: 10px;
-    display: block;
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.slider-indicators {
-    text-align: center;
-    margin-top: 10px;
+.carousel-item {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    transition: all .6s ease;
 }
 
-.slider-indicator {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    background-color: #87CEFA;
-    border-radius: 50%;
-    margin: 0 5px;
+/* --- CENTRAL (desktop) --- */
+.carousel-item.active {
+    width: 600px;
+    height: 340px;
+    z-index: 3;
+    transform: translateX(0) scale(1);
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* --- Laterales (desktop) --- */
+.carousel-item.prev,
+.carousel-item.next {
+    width: 170px;
+    height: 300px;
+    opacity: .6;
+    z-index: 2;
+    transform: scale(.9);
+}
+
+.carousel-item.prev,
+.carousel-item.next:hover{
     cursor: pointer;
 }
 
-.slider-indicator.active {
-    background-color: #00BFFF;
+.carousel-item.prev {
+    transform: translateX(-350px) scale(.9);
 }
+
+.carousel-item.next {
+    transform: translateX(350px) scale(.9);
+}
+
+/* Animaciones */
+.slide-left { transform: translateX(-120px) scale(.9); opacity: .7; }
+.slide-right { transform: translateX(120px) scale(.9); opacity: .7; }
+
+@keyframes toCenter {
+    0% { transform: translateX(350px) scale(.9); opacity: .6; z-index: 1; }
+    40% { transform: translateX(0) scale(1.25); opacity: 1; z-index: 4; }
+    100% { transform: translateX(0) scale(1); z-index: 3; }
+}
+
+.slide-to-center { animation: toCenter .6s ease forwards; }
+
+@keyframes outLeft {
+    0% { transform: translateX(0) scale(1); }
+    100% { transform: translateX(-350px) scale(.9); opacity: .6; }
+}
+.slide-out-left { animation: outLeft .6s ease forwards; }
+
+@keyframes outRight {
+    0% { transform: translateX(0) scale(1); }
+    100% { transform: translateX(350px) scale(.9); opacity: .6; }
+}
+.slide-out-right { animation: outRight .6s ease forwards; }
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 768px
+─────────────────────────────── */
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
+
+    .carousel-item.active {
+        width: 420px;
+        height: 240px;
+    }
+
+    .carousel-item.prev,
+    .carousel-item.next {
+        width: 130px;
+        height: 240px;
+    }
+
+    .carousel-item.prev { transform: translateX(-280px) scale(.9); }
+    .carousel-item.next { transform: translateX(280px) scale(.9); }
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 480px
+─────────────────────────────── */
+@media (max-width: 480px) {
+    .carousel {
+        height: 260px;
+    }
+
+    .carousel-item.active {
+        width: 300px;
+        height: 170px;
+    }
+
+    .carousel-item.prev,
+    .carousel-item.next {
+        width: 100px;
+        height: 200px;
+    }
+
+    .carousel-item.prev { transform: translateX(-200px) scale(.85); }
+    .carousel-item.next { transform: translateX(200px) scale(.85); }
+}
+
+
+
+/* ───────────────────────────────
+      RESPONSIVE 320px
+─────────────────────────────── */
+@media (max-width: 320px) {
+    .carousel {
+        height: 230px;
+    }
+
+    .carousel-item.active {
+        width: 260px;
+        height: 150px;
+    }
+
+    .carousel-item.prev,
+    .carousel-item.next {
+        width: 80px;
+        height: 160px;
+    }
+
+    .carousel-item.prev { transform: translateX(-160px) scale(.8); }
+    .carousel-item.next { transform: translateX(160px) scale(.8); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ------------------------------
     XBOX SECTION
@@ -1123,58 +1548,4 @@ footer {
 
 
 
-
-.live-button img{
-    width: 25px;
-    margin-bottom: -5px;
-}
-
-/* Imagen en modo inactivo: blanco y negro */
-.live-button.inactivo img {
-    filter: grayscale(100%);
-    opacity: 0.4;
-}
-
-/* Imagen cuando está activo: color normal */
-.live-button.activo img {
-    filter: none;
-    opacity: 1;
-}
-
-
-.live-button {
-    padding: 15px 30px;
-    margin: 10px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-    max-width: 250px;
-    width: 80%;
-}
-
-.live-button.inactivo {
-    background: #555;
-    color: #aaa;
-    cursor: not-allowed;
-}
-
-.live-button.activo {
-    cursor: pointer;
-}
-
-#btn-tiktok.activo{
-    font-weight: 700;
-    color: #000;
-    background: #3ff5fb;
-background: radial-gradient(circle, rgba(63, 245, 251, 1) 0%, rgba(181, 0, 88, 1) 100%);
-}
-
-#btn-kick.activo{
-    font-weight: 700;
-    color: #fff;
-   background: #000000;
-background: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(66, 251, 63, 1) 100%);
-}
 

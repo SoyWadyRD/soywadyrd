@@ -1,49 +1,54 @@
 
+document.addEventListener("DOMContentLoaded", () => {
+    const p = document.getElementById("typewriter");
+    if (!p) return;
 
+    // Tomamos el texto original y normalizamos cualquier whitespace a un solo espacio
+    const raw = p.textContent || p.innerText || "";
+    const text = raw.replace(/\s+/g, " ").trim(); // <- clave: evita que las palabras se peguen
 
+    // Limpia el contenido para empezar la animación
+    p.textContent = "";
+    p.style.opacity = 1; // mostrar antes de empezar
 
-document.addEventListener("DOMContentLoaded", function() {
-    const slides = document.querySelector('.slides');
-    const totalSlides = slides.children.length;
-    let currentIndex = 0;
+    let i = 0;
+    let animacionIniciada = false;
+    let typingTimer = null;
 
-    function showNextSlide() {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        // Actualiza los indicadores (si se utilizan)
-        updateIndicators();
+    function escribir() {
+        if (i < text.length) {
+            p.textContent += text.charAt(i);
+            i++;
+            typingTimer = setTimeout(escribir, 30); // velocidad (ms)
+        } else {
+            // quitar cursor cuando termine (si lo añadiste)
+            p.classList.remove("cursor");
+        }
     }
 
-    function updateIndicators() {
-        const indicators = document.querySelectorAll('.slider-indicator');
-        indicators.forEach((indicator, index) => {
-            if (index === currentIndex) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
+    // IntersectionObserver para iniciar al hacer scroll
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animacionIniciada) {
+                animacionIniciada = true;
+                p.classList.add("cursor"); // añadir cursor parpadeante opcional
+                escribir();
+                obs.unobserve(p); // solo una vez
             }
         });
-    }
+    }, { threshold: 0.3 });
 
-    // Crea los indicadores (si se utilizan)
-    function createIndicators() {
-        const indicatorContainer = document.createElement('div');
-        indicatorContainer.classList.add('slider-indicators');
-        for (let i = 0; i < totalSlides; i++) {
-            const indicator = document.createElement('div');
-            indicator.classList.add('slider-indicator');
-            indicatorContainer.appendChild(indicator);
-        }
-        document.querySelector('#game-slider').appendChild(indicatorContainer);
-        updateIndicators();
-    }
+    observer.observe(p);
 
-    createIndicators();
-    setInterval(showNextSlide, 3000); // Cambia la imagen cada 3 segundos
+    // Si quieres reiniciar el intervalo al hacer click por ejemplo:
+    // p.addEventListener('click', () => {
+    //     clearTimeout(typingTimer);
+    //     i = 0;
+    //     p.textContent = "";
+    //     animacionIniciada = false;
+    //     observer.observe(p);
+    // });
 });
-
-
 
 
 
@@ -155,6 +160,10 @@ window.addEventListener("load", () => {
 
 
 
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const modal = document.getElementById("name-modal");
@@ -189,11 +198,40 @@ document.addEventListener("DOMContentLoaded", () => {
     video.play();
 });
 
-    // Cuando el video termina
     video.addEventListener("ended", () => {
-        nextSection.scrollIntoView({ behavior: "smooth" });
-    });
+
+    nextSection.scrollIntoView({ behavior: "smooth" });
+
+    setTimeout(() => {
+
+        video.classList.add("video-hide");
+
+        setTimeout(() => {
+            video.remove(); // 👈 elimina el video del DOM por completo
+
+            const hero = document.querySelector(".hero");
+
+            // Elimina TODO lo que haya dentro del header
+            hero.innerHTML = "";
+
+            // Colapsa el header
+            hero.classList.add("hero-collapse");
+
+        }, 800);
+
+    }, 900);
 });
+
+});
+
+
+
+
+
+
+
+
+
 
 
 
@@ -224,6 +262,98 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+const images = [
+    "img/forza.jpg",
+    "img/cod.png",
+    "img/fortnite.jpg",
+    "img/f123.jpg",
+    "img/assettocorsa.jpg",
+    "img/gtavonline.jpg",
+    "img/snowrunner.jpg"
+];
+
+let index = 0;
+let autoSlide;
+
+const prevItem = document.querySelector(".carousel-item.prev");
+const activeItem = document.querySelector(".carousel-item.active");
+const nextItem = document.querySelector(".carousel-item.next");
+
+function updateImages() {
+    prevItem.style.backgroundImage  = `url(${images[(index - 1 + images.length) % images.length]})`;
+    activeItem.style.backgroundImage = `url(${images[index]})`;
+    nextItem.style.backgroundImage  = `url(${images[(index + 1) % images.length]})`;
+}
+
+updateImages();
+
+function slideNext() {
+    activeItem.classList.add("slide-out-left");
+    nextItem.classList.add("slide-to-center");
+
+    setTimeout(() => {
+        activeItem.classList.remove("slide-out-left");
+        nextItem.classList.remove("slide-to-center");
+
+        index = (index + 1) % images.length;
+
+        prevItem.className = "carousel-item prev";
+        activeItem.className = "carousel-item active";
+        nextItem.className = "carousel-item next";
+
+        updateImages();
+    }, 600);
+}
+
+function slidePrev() {
+    activeItem.classList.add("slide-out-right");
+    prevItem.classList.add("slide-to-center");
+
+    setTimeout(() => {
+        activeItem.classList.remove("slide-out-right");
+        prevItem.classList.remove("slide-to-center");
+
+        index = (index - 1 + images.length) % images.length;
+
+        prevItem.className = "carousel-item prev";
+        activeItem.className = "carousel-item active";
+        nextItem.className = "carousel-item next";
+
+        updateImages();
+    }, 600);
+}
+
+/* ---- AUTO SLIDE CON REINICIO ---- */
+function startAutoSlide() {
+    clearInterval(autoSlide);
+    autoSlide = setInterval(slideNext, 4000);
+}
+
+startAutoSlide();
+
+/* ---- CLICK ---- */
+prevItem.addEventListener("click", () => {
+    slidePrev();
+    startAutoSlide();
+});
+
+nextItem.addEventListener("click", () => {
+    slideNext();
+    startAutoSlide();
+});
 
 
 
