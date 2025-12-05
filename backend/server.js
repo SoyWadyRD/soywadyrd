@@ -11,6 +11,8 @@ app.use(express.json());
 
 // Servir frontend
 app.use(express.static(path.join(__dirname, '../frontend')));
+app.use('/videos', express.static(path.join(__dirname, '../frontend/videos')));
+
 
 // Rutas
 app.use('/live', liveRoutes);

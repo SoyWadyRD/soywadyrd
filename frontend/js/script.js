@@ -174,46 +174,51 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.classList.add("show");
   document.body.classList.add("no-scroll");
 
-  // Botón entrar
+
+  /* -------------------------
+     🔥 CUANDO LE DA ENTRAR
+  -------------------------- */
   btnEntrar.addEventListener("click", () => {
     modal.classList.remove("show");
     document.body.classList.remove("no-scroll");
 
-    // reproducir video
-    video.muted = true; 
-    video.play();
+    if (!video) return;
 
-    // activar audio después de que el navegador deje
-    setTimeout(() => video.muted = false, 350);
+    // SIEMPRE empezar muted (obligatorio)
+    video.muted = true;
+
+    // Intentar reproducir siempre muted → funciona en todos los navegadores
+    video.play().then(() => {
+      // después de 400ms ya se puede activar audio
+      setTimeout(() => {
+        video.muted = false;   // ahora sí se escucha
+      }, 400);
+
+    }).catch(err => {
+      console.warn("El navegador bloqueó play():", err);
+    });
   });
 
-  // Cuando termina el video
-  video.addEventListener("ended", () => {
 
-    // Fade out del video
+  /* -------------------------
+     🔥 CUANDO EL VIDEO TERMINA
+  -------------------------- */
+  video.addEventListener("ended", () => {
     video.classList.add("video-hide");
 
-    // Pequeña pausa para que el fade se vea
     setTimeout(() => {
-      
-      // colapsar el header
       hero.classList.add("hero-collapse");
 
-      // esperar a que la transición termine para scroll
       hero.addEventListener("transitionend", () => {
-        
-        // hacer scroll cuando ya está abajo
         nextSection.scrollIntoView({ behavior: "smooth" });
 
-        // luego limpiar video
         setTimeout(() => {
-          if (video && video.parentNode) video.remove();
-        }, 400);
+          video.remove();
+        }, 450);
 
       }, { once: true });
 
-    }, 400);
-
+    }, 350);
   });
 
 });
