@@ -194,33 +194,37 @@ document.addEventListener("DOMContentLoaded", () => {
     btnEntrar.addEventListener("click", () => {
     modal.classList.remove("show");
     document.body.classList.remove("no-scroll"); 
-    video.muted = false;
-    video.play();
+    video.muted = true;   // 🔥 el navegador lo permite
+video.play();
+
+setTimeout(() => {
+    video.muted = false; // 🔥 se activa audio después del play
+}, 300);
+
 });
 
     video.addEventListener("ended", () => {
+    
+    // 1. Apagar gradualmente
+    video.classList.add("video-hide");
 
-    nextSection.scrollIntoView({ behavior: "smooth" });
-
+    // 2. Esperar fade out
     setTimeout(() => {
 
-        video.classList.add("video-hide");
+        const hero = document.querySelector(".hero");
+        video.remove();
 
+        // 3. Colapsar header
+        hero.classList.add("hero-collapse");
+
+        // 4. Después del colapso bajar SOLO una vez
         setTimeout(() => {
-            video.remove(); // 👈 elimina el video del DOM por completo
+            nextSection.scrollIntoView({ behavior: "smooth" });
+        }, 600);
 
-            const hero = document.querySelector(".hero");
-
-            // Elimina TODO lo que haya dentro del header
-            hero.innerHTML = "";
-
-            // Colapsa el header
-            hero.classList.add("hero-collapse");
-
-        }, 800);
-
-    }, 900);
+    }, 800);
 });
+
 
 });
 
