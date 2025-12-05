@@ -162,71 +162,62 @@ window.addEventListener("load", () => {
 
 
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
-    const modal = document.getElementById("name-modal");
-    const btnEntrar = document.getElementById("btn-entrar");
-    const video = document.querySelector(".hero-video");
-    const nextSection = document.querySelector("#sobre-mi");
+  const modal = document.getElementById("name-modal");
+  const btnEntrar = document.getElementById("btn-entrar");
+  const hero = document.querySelector(".hero");
+  const video = document.querySelector(".hero-video");
+  const nextSection = document.querySelector("#sobre-mi");
 
-    
+  // Mostrar modal
+  modal.classList.add("show");
+  document.body.classList.add("no-scroll");
 
-    modal.addEventListener("click", (e) => {
-    // Evita cerrar modal si tocan fuera
-    if (e.target === modal) {
-        e.stopPropagation();
-    }
-});
-
-
-    if (!modal || !btnEntrar || !video) {
-        console.error("ERROR: Falta un elemento del DOM");
-        return;
-    }
-
-    // Mostrar modal correctamente
-    modal.classList.add("show");
-    document.body.classList.add("no-scroll");
-
-    // Click en Entrar
-    btnEntrar.addEventListener("click", () => {
+  // Botón entrar
+  btnEntrar.addEventListener("click", () => {
     modal.classList.remove("show");
-    document.body.classList.remove("no-scroll"); 
-    video.muted = true;   // 🔥 el navegador lo permite
-video.play();
+    document.body.classList.remove("no-scroll");
 
-setTimeout(() => {
-    video.muted = false; // 🔥 se activa audio después del play
-}, 300);
+    // reproducir video
+    video.muted = true; 
+    video.play();
 
-});
+    // activar audio después de que el navegador deje
+    setTimeout(() => video.muted = false, 350);
+  });
 
-    video.addEventListener("ended", () => {
-    
-    // 1. Apagar gradualmente
+  // Cuando termina el video
+  video.addEventListener("ended", () => {
+
+    // Fade out del video
     video.classList.add("video-hide");
 
-    // 2. Esperar fade out
+    // Pequeña pausa para que el fade se vea
     setTimeout(() => {
+      
+      // colapsar el header
+      hero.classList.add("hero-collapse");
 
-        const hero = document.querySelector(".hero");
-        video.remove();
+      // esperar a que la transición termine para scroll
+      hero.addEventListener("transitionend", () => {
+        
+        // hacer scroll cuando ya está abajo
+        nextSection.scrollIntoView({ behavior: "smooth" });
 
-        // 3. Colapsar header
-        hero.classList.add("hero-collapse");
-
-        // 4. Después del colapso bajar SOLO una vez
+        // luego limpiar video
         setTimeout(() => {
-            nextSection.scrollIntoView({ behavior: "smooth" });
-        }, 600);
+          if (video && video.parentNode) video.remove();
+        }, 400);
 
-    }, 800);
+      }, { once: true });
+
+    }, 400);
+
+  });
+
 });
 
-
-});
 
 
 
