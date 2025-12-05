@@ -161,7 +161,6 @@ window.addEventListener("load", () => {
 
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const modal = document.getElementById("name-modal");
@@ -174,6 +173,10 @@ document.addEventListener("DOMContentLoaded", () => {
   modal.classList.add("show");
   document.body.classList.add("no-scroll");
 
+  // 🟢 PRE-CARGAR el video sin reproducirlo
+  if (video) {
+    video.load();
+  }
 
   /* -------------------------
      🔥 CUANDO LE DA ENTRAR
@@ -184,14 +187,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!video) return;
 
-    // SIEMPRE empezar muted (obligatorio)
+    // Siempre empezar muted (obligatorio)
     video.muted = true;
 
-    // Intentar reproducir siempre muted → funciona en todos los navegadores
     video.play().then(() => {
-      // después de 400ms ya se puede activar audio
       setTimeout(() => {
-        video.muted = false;   // ahora sí se escucha
+        video.muted = false;
       }, 400);
 
     }).catch(err => {
@@ -199,9 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
   /* -------------------------
-     🔥 CUANDO EL VIDEO TERMINA
+     🔥 CUANDO TERMINA EL VIDEO
   -------------------------- */
   video.addEventListener("ended", () => {
     video.classList.add("video-hide");
