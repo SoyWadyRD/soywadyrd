@@ -149,6 +149,15 @@ setInterval(verificarEnVivo, 20000);
 verificarEnVivo();
 
 
+// ❗ Eliminar hash (#) para evitar saltos automáticos
+window.addEventListener("DOMContentLoaded", () => {
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+});
+
+
+
 // Evitar que el navegador recuerde la posición al recargar
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
