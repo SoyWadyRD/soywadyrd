@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Science+Gothic:wght@400;700&display=swap');
+
 /* ------------------------------
     SCROLLBAR
 ------------------------------ */
@@ -188,9 +190,7 @@ input[type="text"]::placeholder {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #87CEFA;
-}
+
 
 /* ------------------------------
     GLOBAL
@@ -607,7 +607,7 @@ body {
     scroll-margin-top: 100px;
     width: 100%;
     max-width: 70%;
-    height: 30vh;
+    height: 340px;
     margin: 100px auto 100px;
     padding: 20px;
 
@@ -1281,88 +1281,538 @@ background: radial-gradient(circle, rgba(0, 0, 0, 1) 65%, rgba(66, 251, 63, 1) 1
 
 
 
-
-
-
-
-
-
-
-
-/* ------------------------------
-    XBOX SECTION
------------------------------- */
-#xbox {
-    text-align: center;
-    margin: 40px auto;      /* 🔥 Esto centra el cuadro horizontalmente */
-    padding: 20px;
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    width: 80%;
-}
-
-
-#xbox h2 {
-    color: lightblue;
-    margin-bottom: 10px;
-}
-
-.xbox-container {
+/* ===================================
+     SECCIÓN SIN IMAGEN DE FONDO
+=================================== */
+.xbox-section {
+    padding: 100px 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+/* ===================================
+     CARD CON BORDE ANIMADO
+=================================== */
+.xbox-card {
+    position: relative;
+    z-index: 2;
+
+    width: 90%;
+    max-width: 650px;
+    padding: 40px;
+
+    background: #1a1a1a;
+    border-radius: 18px;
+
+    backdrop-filter: blur(10px);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* BORDE ANIMADO */
+.xbox-card.xbox-border-animate::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 20px;
+    padding: 2px;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        #00ff66,
+        transparent
+    );
+
+    background-size: 300% 300%;
+    animation: borderRun 3s linear infinite;
+
+    -webkit-mask: 
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+
+    box-sizing: border-box;
+
+    /* 👇 ESTA LÍNEA SOLUCIONA EL PROBLEMA */
+    pointer-events: none;
+}
+
+
+
+@keyframes borderRun {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 200% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===================================
+     TEXTO
+=================================== */
+.xbox-title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.gtag {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+.gtag-name {
+    color: #00ff66;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+/* ===================================
+     BOTÓN
+=================================== */
+.xbox-btn {
+    display: inline-flex;
     align-items: center;
     gap: 10px;
+
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: white;
+
+    border: 2px solid #00ff66;
+    background: rgba(0, 255, 80, 0.1);
+
+    transition: 0.3s ease;
 }
 
-.xbox-container p {
-    color: white;
-    font-size: 1.2em;
-    margin: 5px 0;
+.xbox-btn:hover {
+    background: rgba(0, 255, 80, 0.25);
 }
 
 .xbox-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: transform 0.3s;
+    font-size: 36px;
+    color: #fff;
+    filter: drop-shadow(0 0 6px #fff);
+
 }
 
-.xbox-icon:hover {
-    transform: scale(1.1);
+/* =============================
+      RESPONSIVE DESIGN
+============================= */
+
+/* 📌 Tablets – 768px */
+@media (max-width: 768px) {
+
+    .xbox-card {
+        padding: 30px;
+        max-width: 500px;
+    }
+
+    .xbox-title {
+        font-size: 1.8rem;
+    }
+
+    .gtag {
+        font-size: 1rem;
+    }
+
+    .gtag-name {
+        font-size: 1.4rem;
+    }
+
+    .xbox-btn {
+        font-size: 1.1rem;
+        padding: 10px 24px;
+    }
+
+    .xbox-icon {
+        font-size: 32px;
+    }
 }
 
-/* ------------------------------
-    DISCORD SECTION
------------------------------- */
-#discord {
+
+/* FIX REAL PARA EL ICONO EN 480px */
+@media (max-width: 480px) {
+
+    .xbox-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding: 12px 20px !important;
+    }
+
+    .xbox-icon {
+        font-size: 28px !important;
+        
+        padding: 0 !important;
+        line-height: 1 !important;
+        margin-bottom: -17px;
+    }
+
+    .xbox-btn span {
+        font-size: 1.1rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+    }
+}
+
+/* 📌 Celulares estándar – 375px */
+@media (max-width: 375px) {
+
+    .xbox-section {
+        padding: 60px 10px;
+    }
+
+    .xbox-card {
+        padding: 22px;
+    }
+
+    .xbox-title {
+        font-size: 1.45rem;
+    }
+
+    .gtag {
+        font-size: 0.9rem;
+    }
+
+    .gtag-name {
+        font-size: 1.2rem;
+    }
+
+    .xbox-btn {
+        font-size: 0.95rem;
+        padding: 9px 18px;
+        gap: 6px;
+    }
+
+    .xbox-icon {
+        font-size: 26px;
+    }
+}
+
+/* 📌 Celulares muy pequeños – 320px */
+@media (max-width: 320px) {
+
+    .xbox-section {
+        padding: 50px 8px;
+    }
+
+    .xbox-card {
+        padding: 18px;
+    }
+
+    .xbox-title {
+        font-size: 1.3rem;
+    }
+
+    .gtag {
+        font-size: 0.85rem;
+    }
+
+    .gtag-name {
+        font-size: 1.1rem;
+    }
+
+    .xbox-btn {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+        gap: 5px;
+    }
+
+    .xbox-icon {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/*// Glow Border Animation //*/
+.cd__main{
+   background: #000 !important;
+}
+
+.center-box{
+  height: 340px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.animated-border-box, .animated-border-box-glow{
+  position: absolute;
+  overflow: hidden; 
+  z-index: 1;
+	border-radius: 10px;
     text-align: center;
     margin: 40px auto;
     padding: 20px;
     background-color: #1a1a1a;
+    width: 70%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Botón gamer neon siempre animado */
+.btn-dc {
+    margin-top: 50px;
+    position: relative;
+    width: 250px;
+    height: 70px;
     border-radius: 10px;
-    width: 80%;
-}
-
-#discord h2 {
-    color: lightblue;
-}
-
-.discord-container {
+    background: #4654c0;
+    border: none;
+    color: white;
+    font-size: 28px;
+    font-family: "Science Gothic", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    gap: 10px;
+
+    /* Glow principal permanente */
+    box-shadow: 
+        0 0 12px #4654c0,
+        0 0 25px #4654c0,
+        inset 0 0 15px #2f36a4;
+
+    transition: 0.25s ease-in-out;
+    overflow: hidden;
 }
 
+a{
+    text-decoration: none;
+}
+
+/* Borde animado SIEMPRE, sin hover */
+.btn-dc::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent,
+        #8293ff,
+        transparent 30%
+    );
+    animation: rotateGlow 4s linear infinite;
+    top: -50%;
+    left: -50%;
+    z-index: -2;
+    opacity: 0.7;
+}
+
+/* Fondo interno */
+.btn-dc::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: #4654c0;
+    border-radius: 8px;
+    z-index: -1;
+}
+
+/* Hover MÁS BRILLANTE pero sin afectar el borde animado */
+.btn-dc:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 18px #7b8afa,
+        0 0 35px #7b8afa,
+        inset 0 0 20px #6f7df0;
+}
+
+/* Icono neon */
 .discord-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: transform 0.3s;
+    font-size: 35px;
+    filter: drop-shadow(0 0 8px #ffffff);
+    transition: 0.25s;
 }
 
-.discord-icon:hover {
-    transform: scale(1.1);
+/* Hover del icono (solo brillo) */
+.btn-dc:hover .discord-icon {
+    filter: drop-shadow(0 0 12px #ffffff);
 }
+
+/* Animación del borde */
+@keyframes rotateGlow {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+ 
+.animated-border-box-glow{
+  overflow: hidden;
+  /* Glow Blur */
+  filter: blur(20px);
+}
+ 
+.animated-border-box:before, .animated-border-box-glow:before {
+  content: '';
+  z-index: -2;
+  text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+  position: absolute;
+	width: 99999px;
+	height: 99999px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+  /*border color, change middle color*/
+	background-image: conic-gradient(rgba(0,0,0,0), #4654c0, rgba(0,0,0,0) 25%);
+  /* change speed here */
+	animation: rotate 4s linear infinite;
+}
+ 
+.animated-border-box:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+  /* border width */
+	left: 5px;
+	top: 5px;
+  /* double the px from the border width left */
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+  /*bg color*/
+	background: #292a2e;
+  /*box border radius*/
+	border-radius: 7px;
+}
+ 
+@keyframes rotate {
+	100% {
+		transform: translate(-50%, -50%) rotate(1turn);
+	}
+}
+
+
+
+
+/* ===========================================================
+   📱 RESPONSIVE DESIGN
+   =========================================================== */
+
+/* 768px */
+@media (max-width: 768px) {
+    .animated-border-box, .animated-border-box-glow {
+        width: 85%;
+        height: 260px;
+        padding: 15px;
+    }
+
+    .btn-dc {
+        width: 220px;
+        height: 65px;
+        font-size: 24px;
+    }
+
+    .discord-icon {
+        font-size: 30px;
+    }
+}
+
+/* 480px */
+@media (max-width: 480px) {
+    .animated-border-box, .animated-border-box-glow {
+        width: 90%;
+        height: 230px;
+        padding: 15px;
+    }
+
+    .btn-dc {
+        margin-top: 30px;
+        width: 200px;
+        height: 58px;
+        font-size: 22px;
+    }
+
+    .discord-icon {
+        font-size: 27px;
+        margin-bottom: -17px;
+    }
+}
+
+/* 375px */
+@media (max-width: 375px) {
+    .animated-border-box, .animated-border-box-glow {
+        width: 85%;
+        height: 210px;
+        padding: 12px;
+    }
+
+    .btn-dc {
+        margin-top: 15px;
+        width: 180px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    .discord-icon {
+        font-size: 25px;
+    }
+}
+
+/* 320px */
+@media (max-width: 320px) {
+    .animated-border-box, .animated-border-box-glow {
+        width: 80%;
+        height: 220px;
+        padding: 10px;
+    }
+
+    .btn-dc {
+        margin-top: 5px;
+        width: 160px;
+        height: 48px;
+        font-size: 18px;
+    }
+
+    .discord-icon {
+        font-size: 23px;
+    }
+}
+
+
+
+
+
+
+
+
+/* ------------------------------
+    DISCORD SECTION
+------------------------------ */
+
+
+
+
 
 /* ------------------------------
     VIDEO PLAYLIST
